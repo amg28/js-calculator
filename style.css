@@ -1,0 +1,51 @@
+/* override browser default styling */
+html,body {
+    margin: 0;
+    padding: 0;
+}
+
+/* Cover page fully using viewport-relative units */
+body {
+    height: 100vh; /* 1vh is 1% of view port height. View port is browser window size. Example: 50cm height will be relative 0.5cm or 1vh. */
+    width: 100vw;
+  }
+  
+  /* include border and padding in element width and height */
+  * {
+    box-sizing: border-box;
+  }
+
+main{
+    height: 100%;
+    width: 100%;
+}
+
+section {
+    width: 100%;
+    background-color: lightblue;
+    float: left;
+    height: auto;
+    min-height: 50%;
+}
+
+.button-container {
+    width: 70%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-content: center;
+}
+
+aside {
+    width: 30%;
+    background-color: lightcoral;
+    float: right;
+    min-height: 50%;
+}
+
+.button{
+    width: 20%;
+    height: 3em; /* Relative to font-size of the element. 2em - 2 times, 3em - 3 times */
+    color: gray;
+    margin: 2px;
+}
