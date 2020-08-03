@@ -13,6 +13,7 @@ function createSignButton(signText) {
 const buttons = document.querySelectorAll('.button');
 const result = document.querySelector('.result');
 buttons.forEach((button) => button.addEventListener('click',function(e){
+    //TODO: add a switch statement for special signs
     result.innerText += this.innerText;
 }))
 
