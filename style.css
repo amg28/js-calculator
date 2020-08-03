@@ -18,22 +18,38 @@ body {
 main{
     height: 100%;
     width: 100%;
+    display: flex;
+    flex-flow: row;
 }
 
-section {
-    width: 100%;
-    background-color: lightblue;
+section{
     float: left;
     height: auto;
     min-height: 50%;
+    width: 100%;
+}
+
+.main-container {
+    display: flex;
+    flex-flow: column;
+    width: 100%;
+}
+
+.result-section {
+    background-color: lightblue;
+}
+
+.sign-section { 
+    background-color: lightgreen;
 }
 
 .button-container {
-    width: 70%;
+    width: 100%;
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
     align-content: center;
+    margin: 3%;
 }
 
 aside {
@@ -45,7 +61,7 @@ aside {
 
 .button{
     width: 20%;
-    height: 3em; /* Relative to font-size of the element. 2em - 2 times, 3em - 3 times */
+    height: 5em; /* Relative to font-size of the element. 2em - 2 times, 3em - 3 times */
     color: gray;
-    margin: 2px;
+    margin: 3px;
 }

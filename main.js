@@ -10,3 +10,9 @@ function createSignButton(signText) {
     buttonContainer.appendChild(button);
 }
 
+const buttons = document.querySelectorAll('.button');
+const result = document.querySelector('.result');
+buttons.forEach((button) => button.addEventListener('click',function(e){
+    result.innerText += this.innerText;
+}))
+
