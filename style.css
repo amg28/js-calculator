@@ -68,14 +68,12 @@ section {
     flex-flow: row wrap;
     justify-content: center;
     align-content: center;
-    margin-top: 3%;
 }
 
 aside {
     width: 30%;
     background-color: var(--side-section-color);
     float: right;
-    min-height: 50%;
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4);
 }
 
@@ -84,7 +82,7 @@ aside {
     height: 4em; /* Relative to font-size of the element. 2em - 2 times, 3em - 3 times */
     background: var(--button-color);
     margin: 4px;
-    font-size: 30px;
+    font-size: 25px;
     color: white;
     border: none;
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
