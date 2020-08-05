@@ -4,7 +4,7 @@ html,body {
     padding: 0;
 }
 
-:root{
+:root {
     --screen-section-color: #273233;
     --screen-screen-color: #ffffff;
     --main-section-color: #273233;
@@ -23,14 +23,14 @@ body {
     box-sizing: border-box;
   }
 
-main{
+main {
     height: 100%;
     width: 100%;
     display: flex;
     flex-flow: row;
 }
 
-section{
+section {
     float: left;
     height: auto;
     min-height: 50%;
@@ -79,7 +79,7 @@ aside {
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4);
 }
 
-.button{
+.button {
     width: 20%;
     height: 4em; /* Relative to font-size of the element. 2em - 2 times, 3em - 3 times */
     background: var(--button-color);
