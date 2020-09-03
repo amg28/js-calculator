@@ -1,59 +1,100 @@
 //Screen element
 const screen = document.querySelector('.screen');
+let operationHistory = [];
+let currentOperation = {};
 
 // Variables used for mathematical operations
-let numberOne = 0;
-let numberTwo = 0;
-let operation = '';
+class Operation {
+
+    constructor(firstNumber, secondNumber, operation, result) {
+        this.firstNumber = firstNumber;
+        this.secondNumber = secondNumber;
+        this.operation = operation;
+        this.result = result;
+    }
+
+    getResult() {
+        return this.operation(this.firstNumber, this.secondNumber);
+    }
+
+}
 
 //Adding event listeners to buttons
 const buttons = document.querySelectorAll('.button');
-buttons.forEach((button) => button.addEventListener('click', function (e) {
+buttons.forEach((button) => button.addEventListener('click', function (e) { buttonClickHandler(this.id) }
+));
 
-    //Each button's id is defined as math operation sign. Example: '+' button's id is set as '+'.
-    const sign = this.id;
+function buttonClickHandler(character) {
 
-    switch (sign) {
-        case '+':
-        case '-':
-        case '*':
-        case '/':
-            numberOne = parseFloat(screen.innerText);
-            clearScreen(screen);
-            operation = sign;
-            break;
+    const specialOperations = ["CE", "C", "←"];
+    const mathematicalOperations = ["+", "-", "x", "/", "="];
 
-        case '=':
-            numberTwo = parseFloat(screen.innerText);
-            clearScreen(screen);
-            screen.innerText = calculate(numberOne, numberTwo, operation);
-            console.log(`Final screen: ${screen.innerText}`);
-            break;
-
-        default:
-            show(screen, this.innerText);
-            break;
+    if (mathematicalOperations.includes(character)) {
+        handleMathSign(character);
+    } else if (specialOperations.includes(character)) {
+        if(character === '←'){
+            backspace();
+        } else {
+            clearScreen();
+        }
+    } else {
+        show(character);
     }
-}))
+    console.log(operationHistory);
+}
 
-function calculate(numberOne, numberTwo, operation) {
-    console.info(`1: ${numberOne} 2: ${numberTwo} 3: ${operation}`);
-    switch (operation) {
-        case '+':
-            return numberOne + numberTwo;
-        case '-':
-            return numberOne - numberTwo;
-        case '*':
-            return numberOne * numberTwo;
-        case '/':
-            return numberOne / numberTwo;
+function handleMathSign(sign) {
+    if (sign === '=') {
+        equal();
+    } else {
+        let firstNumber = readNumberFromScreen();
+        let mathOperation = findMathOperation(sign);
+        currentOperation = new Operation(firstNumber, 0, mathOperation, 0);
+        show(sign);
     }
 }
 
-function show(screen, number) {
+function equal() {
+    let operation = currentOperation;
+    operation.secondNumber = readNumberFromScreen();
+    let result = operation.getResult();
+    operationHistory.push(new Operation(operation.firstNumber, operation.secondNumber, operation.operation, result));
+    clearScreen();
+    show(result);
+}
+
+//Help functions
+function readNumberFromScreen() {
+    let result = screen.innerText.match(/\d+$/);
+    return parseFloat(result);
+}
+
+function show(number) {
     screen.innerText += number;
 }
 
-function clearScreen(screen) {
+function clearScreen() {
     screen.innerText = '';
+}
+
+function backspace() {
+    let value = screen.innerText;
+    screen.innerText = value.slice(0,value.length-1);
+}
+
+function findMathOperation(sign) {
+    switch (sign) {
+        case '+':
+            return (a, b) => a + b;
+            
+        case '-':
+            return (a, b) => a - b;
+            
+        case 'x':
+            return (a, b) => a * b;
+            
+        case '/':
+            return (a, b) => a / b;
+            
+    }
 }
