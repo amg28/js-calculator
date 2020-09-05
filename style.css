@@ -1,89 +1,139 @@
-/* override browser default styling */
-html,body {
-    margin: 0;
-    padding: 0;
+body {
+    margin: 0px;
+    background: #485563;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to top, #29323c, #485563);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to top, #29323c, #485563); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 }
 
 :root {
-    --screen-section-color: #273233;
-    --screen-screen-color: #ffffff;
-    --main-section-color: #273233;
-    --side-section-color: #5d5d5d; 
-    --button-color: #333333;
+    --screen-color: #e3edffcc;
+    --calculator-color: #010711e7;
+    --history-color: #b8d2ff8c; 
+    --primary-button-color: #414040;
+    --secondary-button-color: #626262;
+    --acent-button-color: #476ba5;
 }
 
-/* Cover page fully using viewport-relative units */
-body {
-    height: 100vh; /* 1vh is 1% of view port height. View port is browser window size. Example: 50cm height will be relative 0.5cm or 1vh. */
-    width: 100vw;
-  }
-  
-  /* include border and padding in element width and height */
-  * {
-    box-sizing: border-box;
-  }
-
-main {
-    height: 100%;
+body.container {
+    display: grid;
     width: 100%;
-    display: flex;
-    flex-flow: row;
+    height: 100vh;
+    min-height: 500px;
+    grid-template-rows: 10% 80% 10%;
+    grid-template-columns: 20% 60% 20%;
 }
 
-section {
-    float: left;
-    height: auto;
-    min-height: 50%;
-    width: 100%;
+header{
+    grid-area: 1/1/1/4;
 }
 
-.main-container {
-    display: flex;
-    flex-flow: column;
-    width: 100%;
+main{
+    grid-area: 2/2/3/3;
 }
 
-.screen-section {
-    background-color: var(--screen-section-color);
-    display: flex;
+main.container{
+    display: grid;
+    grid-template-columns: 70% 30%;
+    grid-template-rows: 100%;
 }
 
-.screen {
-    display: block;
-    width: 80%;
-    height: 60%;
-    margin: auto;
-    background-color: var(--screen-screen-color);
+.calculator{
+    background-color: var(--calculator-color);
+}
+
+.calculator.container{
+    display: grid;
+    grid-template-rows: 40% 60%;
+}
+
+.screen{
+    margin: 20px;
+    background-color: var(--screen-color);
+    border-radius: 10px;
     font-size: 100px;
     overflow-wrap: break-word;
     box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4);
 }
 
-.sign-section { 
-    background-color: var(--main-section-color);
+.button-block{
+    background-color: lightblue;
+    padding: 20px;
+    padding-top: 0;
 }
 
-.button-container {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    align-content: center;
+.button-block.container{
+    display: grid;
+    grid-template-rows: repeat(6, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px 10px;
+    background-color: var(--calculator-color);
 }
 
-aside {
-    width: 30%;
-    background-color: var(--side-section-color);
-    float: right;
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4);
-}
-
-.button {
-    width: 20%;
-    height: 4em; /* Relative to font-size of the element. 2em - 2 times, 3em - 3 times */
-    background: var(--button-color);
-    margin: 4px;
+.button{
+    border-radius: 10px;
+    background-color: var(--primary-button-color);
     font-size: 25px;
-    color: white;
+    color: rgba(255, 255, 255, 0.801);
     border: none;
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.button:nth-child(-n+4){
+    background-color: var(--secondary-button-color);
+}
+
+.button:nth-child(4n){
+    background-color: var(--secondary-button-color);
+}
+
+.button:nth-last-child(1){
+    background-color: var(--acent-button-color);
+}
+
+.history{
+    background-color: var(--history-color);
+    opacity: 0.3;
+}
+
+footer{
+    grid-area: 3/1/4/4;
+}
+
+/* ----------- Mobile/Tablet Screens ----------- */
+@media screen 
+  and (max-device-width: 1200px) 
+  and (-webkit-min-device-pixel-ratio: 1) { 
+    
+    header{
+        display: none;
+        background-color:aqua;
+    }
+    
+    main{
+        grid-area: 1/1/4/4;
+        background-color:pink;
+    }
+
+    main.container{
+        display: grid;
+        grid-template-columns: 100%;
+        grid-template-rows: 100%;
+    }
+    
+    .button-block.container{
+        display: grid;
+        grid-template-rows: repeat(6, 1fr);
+        grid-template-columns: repeat(4, 1fr);
+        grid-gap: 10px 10px;
+        background-color: var(--calculator-color);
+    }
+
+    .history{
+        display: none;
+    }
+    
+    footer{
+        display: none;
+    }
 }

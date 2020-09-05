@@ -64,6 +64,12 @@ function equal() {
 }
 
 //Help functions
+
+function readScreen() {
+    let result = screen.innerText;
+    return parseFloat(result);
+}
+
 function readNumberFromScreen() {
     let result = screen.innerText.match(/\d+$/);
     return parseFloat(result);
